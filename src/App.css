@@ -32,3 +32,14 @@
 .nav-link:hover {
   background-color: #555;
 }
+
+.page-block{
+  width: 600px;
+  text-align: center;
+  margin: 50px auto 0;
+  background-color: white;
+  color: black;
+  padding: 15px;
+  min-height: 250px;
+  border-radius: 5px;
+}
