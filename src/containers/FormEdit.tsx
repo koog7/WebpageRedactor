@@ -1,5 +1,5 @@
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
-import {useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import axiosAPI from "../axios/AxiosAPI.tsx";
 
 interface Props{
@@ -22,6 +22,15 @@ const FormEdit = () => {
                 setPageInfo(response.data);
             })
     }, [selectedValue]);
+
+
+    const getTitleValue = (event: ChangeEvent<HTMLInputElement>) => {
+        setPageInfo({ ...pageInfo, title: event.target.value });
+    };
+
+    const getContentValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setPageInfo({ ...pageInfo, content: event.target.value });
+    };
 
     return (
         <div>
@@ -63,6 +72,7 @@ const FormEdit = () => {
                 margin="normal"
                 InputLabelProps={{ style: { color: 'white' } }}
                 InputProps={{ style: { color: 'white' } }}
+                onChange={getTitleValue}
                 sx={{
                     color: 'white',
                     marginTop:'75px',
@@ -89,6 +99,7 @@ const FormEdit = () => {
                 rows={4}
                 InputLabelProps={{ style: { color: 'white' } }}
                 InputProps={{ style: { color: 'white' } }}
+                onChange={getContentValue}
                 sx={{
                     color: 'white',
                     '& .MuiOutlinedInput-notchedOutline': {
