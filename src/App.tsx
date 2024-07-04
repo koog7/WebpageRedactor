@@ -1,6 +1,7 @@
 import './App.css'
 import {NavLink, Route, Routes} from "react-router-dom";
 import Home from "./containers/Home.tsx";
+import FormEdit from "./containers/FormEdit.tsx";
 const App = () => {
 
     return(
@@ -23,6 +24,9 @@ const App = () => {
                     )}/>
                     <Route path="/pages/:pageName" element={(
                         <Home />
+                    )}/>
+                    <Route path="/pages/admin" element={(
+                        <FormEdit />
                     )}/>
                 </Routes>
             </div>
