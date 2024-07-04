@@ -1,6 +1,7 @@
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
+import {Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
 import {ChangeEvent, useEffect, useState} from "react";
 import axiosAPI from "../axios/AxiosAPI.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface Props{
     title:string;
@@ -10,6 +11,7 @@ const FormEdit = () => {
 
     const [selectedValue, setSelectedValue] = useState<string>('home');
     const [pageInfo, setPageInfo] = useState<Props>({ title: '', content: '' });
+    const navigate = useNavigate();
 
     const getValue = (e: SelectChangeEvent) => {
         const value = e.target.value;
@@ -31,7 +33,10 @@ const FormEdit = () => {
     const getContentValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setPageInfo({ ...pageInfo, content: event.target.value });
     };
-
+    const putData = async () => {
+        await axiosAPI.put(`/pages/${selectedValue}.json`, pageInfo)
+        await navigate(`/pages/${selectedValue}`)
+    }
     return (
         <div>
             <FormControl fullWidth sx={{marginTop: '50px'}}>
@@ -116,6 +121,7 @@ const FormEdit = () => {
                     },
                 }}
             />
+            <Button variant="contained" onClick={putData}>Submit changes!</Button>
         </div>
     );
 };
