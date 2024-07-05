@@ -1,4 +1,4 @@
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import axiosAPI from "../axios/AxiosAPI.tsx";
 import {useEffect, useState} from "react";
 interface Props{
@@ -7,7 +7,6 @@ interface Props{
 }
 const Home = () => {
     const [pageData , setPageData] = useState<Props>()
-    const navigate = useNavigate();
     const {pageName} = useParams();
 
 
