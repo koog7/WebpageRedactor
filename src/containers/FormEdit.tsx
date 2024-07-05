@@ -41,7 +41,7 @@ const FormEdit = () => {
     return (
         <div>
             <FormControl fullWidth sx={{marginTop: '50px'}}>
-                <InputLabel id="demo-simple-select-label" sx={{color: 'white'}}>Age</InputLabel>
+                <InputLabel id="demo-simple-select-label" sx={{color: 'white'}}>Page</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
