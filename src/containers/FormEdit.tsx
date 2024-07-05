@@ -2,6 +2,7 @@ import {Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Te
 import {ChangeEvent, useEffect, useState} from "react";
 import axiosAPI from "../axios/AxiosAPI.tsx";
 import {useNavigate} from "react-router-dom";
+import { Editor } from '@tinymce/tinymce-react';
 
 interface Props{
     title:string;
@@ -30,8 +31,8 @@ const FormEdit = () => {
         setPageInfo({ ...pageInfo, title: event.target.value });
     };
 
-    const getContentValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setPageInfo({ ...pageInfo, content: event.target.value });
+    const getContentValue = (content: string) => {
+        setPageInfo({ ...pageInfo, content: content  });
     };
     const putData = async () => {
         await axiosAPI.put(`/pages/${selectedValue}.json`, pageInfo)
@@ -95,30 +96,19 @@ const FormEdit = () => {
                     },
                 }}
             />
-            <TextField
-                label="Content"
+            <Editor
+                apiKey="n2ytyxjlf985xw9tvzqe223rod497qp5yqnvpdomo46d76g0"
+                onEditorChange={getContentValue}
                 value={pageInfo.content}
-                fullWidth
-                margin="normal"
-                multiline
-                rows={4}
-                InputLabelProps={{ style: { color: 'white' } }}
-                InputProps={{ style: { color: 'white' } }}
-                onChange={getContentValue}
-                sx={{
-                    color: 'white',
-                    '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'white',
-                    },
-                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'white',
-                    },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'white',
-                    },
-                    '& .MuiSvgIcon-root': {
-                        color: 'white',
-                    },
+                init={{
+                    height: 300,
+                    menubar: false,
+                    toolbar:
+                        'undo redo copy | formatselect | \
+                        fontsize bold italic backcolor | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | \
+                        removeformat | help'
                 }}
             />
             <Button variant="contained" onClick={putData}>Submit changes!</Button>

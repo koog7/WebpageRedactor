@@ -30,7 +30,7 @@ const Home = () => {
             {pageData ? (
                 <>
                     <h1>{pageData.title}</h1>
-                    <p>{pageData.content}</p>
+                    <p dangerouslySetInnerHTML={{ __html: pageData.content }}></p>
                 </>
             ) : (
                 <p>Something gone wrong...</p>
